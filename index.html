@@ -171,40 +171,60 @@
                     <span class="lang-en">Types of Photography You Do</span>
                     <span class="lang-te hidden">మీరు చేసే ఫోటోగ్రఫీ రకాలు</span>
                 </label>
-                <div class="space-y-2">
+                <!-- Add an info message for the user -->
+                <p class="text-sm text-gray-400 mb-2">
+                    <span class="lang-en">Please select up to 3 options.</span>
+                    <span class="lang-te hidden">దయచేసి గరిష్టంగా 3 ఎంపికలను ఎంచుకోండి.</span>
+                </p>
+                <div id="photoTypes-group" class="space-y-2">
                     <div class="flex items-center">
                         <input id="wedding" name="photoTypes" type="checkbox" value="Wedding" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="wedding" class="ml-2 block text-sm font-medium text-gray-300">Wedding</label>
+                        <label for="wedding" class="ml-2 block text-sm font-medium text-gray-300">
+                            Wedding <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="birthday" name="photoTypes" type="checkbox" value="Birthday" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="birthday" class="ml-2 block text-sm font-medium text-gray-300">Birthday</label>
+                        <label for="birthday" class="ml-2 block text-sm font-medium text-gray-300">
+                            Birthday <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="corporate" name="photoTypes" type="checkbox" value="Corporate/Events" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="corporate" class="ml-2 block text-sm font-medium text-gray-300">Corporate/Events</label>
+                        <label for="corporate" class="ml-2 block text-sm font-medium text-gray-300">
+                            Corporate/Events <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="candid" name="photoTypes" type="checkbox" value="Candid" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="candid" class="ml-2 block text-sm font-medium text-gray-300">Candid</label>
+                        <label for="candid" class="ml-2 block text-sm font-medium text-gray-300">
+                            Candid <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="cinematic" name="photoTypes" type="checkbox" value="Cinematic" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="cinematic" class="ml-2 block text-sm font-medium text-gray-300">Cinematic</label>
+                        <label for="cinematic" class="ml-2 block text-sm font-medium text-gray-300">
+                            Cinematic <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="traditional" name="photoTypes" type="checkbox" value="Traditional" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="traditional" class="ml-2 block text-sm font-medium text-gray-300">Traditional</label>
+                        <label for="traditional" class="ml-2 block text-sm font-medium text-gray-300">
+                            Traditional <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="other-photo" name="photoTypes" type="checkbox" value="Other" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
                         <label for="other-photo" class="ml-2 block text-sm font-medium text-gray-300">
                             <span class="lang-en">Other</span>
-                            <span class="lang-te hidden">ఇతర</span>
+                            <span class="lang-te hidden">ఇతర</span> <span class="rank-label"></span>
                         </label>
                     </div>
                 </div>
             </div>
+
+            <!-- This hidden field will store the ranked data for form submission -->
+            <input type="hidden" name="rankedPhotoTypes" id="rankedPhotoTypes" value="">
 
             <!-- Question 7: Additional Services -->
             <div class="form-group">
@@ -212,29 +232,47 @@
                     <span class="lang-en">Additional Services</span>
                     <span class="lang-te hidden">అదనపు సేవలు</span>
                 </label>
-                <div class="space-y-2">
+                 <!-- Add an info message for the user -->
+                <p class="text-sm text-gray-400 mb-2">
+                    <span class="lang-en">Please select up to 3 options.</span>
+                    <span class="lang-te hidden">దయచేసి గరిష్టంగా 3 ఎంపికలను ఎంచుకోండి.</span>
+                </p>
+                <div id="additionalServices-group" class="space-y-2">
                     <div class="flex items-center">
                         <input id="videography" name="additionalServices" type="checkbox" value="Videography" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="videography" class="ml-2 block text-sm font-medium text-gray-300">Videography</label>
+                        <label for="videography" class="ml-2 block text-sm font-medium text-gray-300">
+                            Videography <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="drone" name="additionalServices" type="checkbox" value="Drone" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="drone" class="ml-2 block text-sm font-medium text-gray-300">Drone</label>
+                        <label for="drone" class="ml-2 block text-sm font-medium text-gray-300">
+                            Drone <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="album" name="additionalServices" type="checkbox" value="Album Designing" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="album" class="ml-2 block text-sm font-medium text-gray-300">Album Designing</label>
+                        <label for="album" class="ml-2 block text-sm font-medium text-gray-300">
+                            Album Designing <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="videoEditing" name="additionalServices" type="checkbox" value="Video Editing" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="videoEditing" class="ml-2 block text-sm font-medium text-gray-300">Video Editing</label>
+                        <label for="videoEditing" class="ml-2 block text-sm font-medium text-gray-300">
+                            Video Editing <span class="rank-label"></span>
+                        </label>
                     </div>
                     <div class="flex items-center">
                         <input id="liveStreaming" name="additionalServices" type="checkbox" value="Live Streaming" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
-                        <label for="liveStreaming" class="ml-2 block text-sm font-medium text-gray-300">Live Streaming</label>
+                        <label for="liveStreaming" class="ml-2 block text-sm font-medium text-gray-300">
+                            Live Streaming <span class="rank-label"></span>
+                        </label>
                     </div>
                 </div>
             </div>
+
+            <!-- This hidden field will store the ranked data for form submission -->
+            <input type="hidden" name="rankedAdditionalServices" id="rankedAdditionalServices" value="">
 
             <!-- Question 8: Sample Photos -->
             <div class="form-group">
@@ -300,14 +338,14 @@
     </div>
 
     <script>
-        // The language and theme toggling logic remains, but the form submission script is removed.
         document.addEventListener('DOMContentLoaded', () => {
             const langToggle = document.getElementById('lang-toggle');
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = document.getElementById('theme-icon');
             const enElements = document.querySelectorAll('.lang-en');
             const teElements = document.querySelectorAll('.lang-te');
-
+            
+            // Language and theme toggling logic
             let currentLang = 'en';
             const toggleLanguage = () => {
                 currentLang = currentLang === 'en' ? 'te' : 'en';
@@ -316,7 +354,6 @@
             };
             langToggle.addEventListener('click', toggleLanguage);
 
-            // --- Theme Toggling Logic ---
             const currentTheme = localStorage.getItem('theme') || 'dark';
             if (currentTheme === 'light') {
                 document.body.classList.add('light-mode');
@@ -333,7 +370,55 @@
                 }
             };
             themeToggle.addEventListener('click', toggleTheme);
-            // --- End Theme Toggling Logic ---
+            
+            // New logic for checkbox limit and ranking
+            const photoTypesGroup = document.getElementById('photoTypes-group');
+            const additionalServicesGroup = document.getElementById('additionalServices-group');
+            
+            const handleCheckboxChange = (group, rankedInputId) => {
+                const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+                const checkedCheckboxes = Array.from(checkboxes).filter(cb => cb.checked);
+                
+                // Update rank labels
+                const rankedList = [];
+                checkedCheckboxes.forEach((cb, index) => {
+                    const label = cb.nextElementSibling;
+                    const rankLabelSpan = label.querySelector('.rank-label');
+                    if (rankLabelSpan) {
+                        rankLabelSpan.textContent = `(${index + 1})`;
+                        rankedList.push(`${index + 1}. ${cb.value}`);
+                    }
+                });
+                
+                // Clear rank labels for unchecked boxes
+                Array.from(checkboxes).filter(cb => !cb.checked).forEach(cb => {
+                    const label = cb.nextElementSibling;
+                    const rankLabelSpan = label.querySelector('.rank-label');
+                    if (rankLabelSpan) {
+                        rankLabelSpan.textContent = '';
+                    }
+                });
+                
+                // Disable/enable checkboxes
+                if (checkedCheckboxes.length >= 3) {
+                    Array.from(checkboxes).filter(cb => !cb.checked).forEach(cb => {
+                        cb.disabled = true;
+                    });
+                } else {
+                    Array.from(checkboxes).forEach(cb => {
+                        cb.disabled = false;
+                    });
+                }
+
+                // Update the hidden input field for form submission
+                const rankedInputField = document.getElementById(rankedInputId);
+                if (rankedInputField) {
+                    rankedInputField.value = rankedList.join(', ');
+                }
+            };
+
+            photoTypesGroup.addEventListener('change', () => handleCheckboxChange(photoTypesGroup, 'rankedPhotoTypes'));
+            additionalServicesGroup.addEventListener('change', () => handleCheckboxChange(additionalServicesGroup, 'rankedAdditionalServices'));
         });
     </script>
 </body>
