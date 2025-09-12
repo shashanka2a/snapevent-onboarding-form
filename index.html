@@ -108,7 +108,8 @@
         </div>
 
         <!-- Form Content -->
-        <form id="onboarding-form" class="space-y-6" name="contact" method="POST" data-netlify="true">
+        <!-- We've re-added data-netlify and removed all Javascript to use Netlify Forms directly -->
+        <form class="space-y-6" name="contact" method="POST" data-netlify="true" action="/success.html">
             <input type="hidden" name="form-name" value="contact" />
             <!-- Question 1: Full Name -->
             <div class="form-group">
@@ -241,7 +242,7 @@
                     <span class="lang-en">Upload 3–5 Sample Photos (Google Drive link)</span>
                     <span class="lang-te hidden">3–5 నమూనా ఫోటోలు అప్‌లోడ్ చేయండి (Google Drive లింక్)</span>
                 </label>
-                <textarea id="samplePhotos" name="samplePhotos" rows="4" class="mt-1 block w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors"></textarea>
+                <textarea id="samplePhotos" name="samplePhotos" rows="4" class="mt-1 block w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors" required></textarea>
             </div>
 
             <!-- Question 9: Starting Price -->
@@ -250,7 +251,7 @@
                     <span class="lang-en">Starting Price (Per Event / Per Day)</span>
                     <span class="lang-te hidden">ప్రారంభ ధర (ఈవెంట్/రోజుకు)</span>
                 </label>
-                <input type="text" id="startingPrice" name="startingPrice" class="mt-1 block w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                <input type="text" id="startingPrice" name="startingPrice" class="mt-1 block w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors" required>
             </div>
 
             <!-- Question 10: Language -->
@@ -273,7 +274,7 @@
 
             <!-- Submit Button & Message -->
             <div class="mt-8 text-center">
-                <button type="submit" id="submitButton" class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                <button type="submit" class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
                     <span class="lang-en">Submit Form</span>
                     <span class="lang-te hidden">ఫారమ్ సమర్పించండి</span>
                 </button>
@@ -295,10 +296,11 @@
                 <span class="lang-te hidden">వేచి ఉండండి – మీ పోర్ట్‌ఫోలియో లింక్‌ను మేము వాట్సాప్‌లో షేర్ చేస్తాము.</span>
             </p>
         </div>
-
+        <div id="statusMessage" class="mt-4 text-center text-sm font-semibold transition-opacity duration-300 opacity-0"></div>
     </div>
 
     <script>
+        // The language and theme toggling logic remains, but the form submission script is removed.
         document.addEventListener('DOMContentLoaded', () => {
             const langToggle = document.getElementById('lang-toggle');
             const themeToggle = document.getElementById('theme-toggle');
@@ -307,23 +309,19 @@
             const teElements = document.querySelectorAll('.lang-te');
 
             let currentLang = 'en';
-
             const toggleLanguage = () => {
                 currentLang = currentLang === 'en' ? 'te' : 'en';
                 enElements.forEach(el => el.classList.toggle('hidden', currentLang === 'te'));
                 teElements.forEach(el => el.classList.toggle('hidden', currentLang === 'en'));
             };
-
             langToggle.addEventListener('click', toggleLanguage);
 
             // --- Theme Toggling Logic ---
             const currentTheme = localStorage.getItem('theme') || 'dark';
-
             if (currentTheme === 'light') {
                 document.body.classList.add('light-mode');
                 themeIcon.textContent = '☀️';
             }
-
             const toggleTheme = () => {
                 const isLightMode = document.body.classList.toggle('light-mode');
                 if (isLightMode) {
@@ -334,7 +332,6 @@
                     localStorage.setItem('theme', 'dark');
                 }
             };
-
             themeToggle.addEventListener('click', toggleTheme);
             // --- End Theme Toggling Logic ---
         });
