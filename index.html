@@ -314,6 +314,14 @@
                                     <span class="lang-te">వీడియో మిక్సింగ్</span> <span class="rank-label"></span>
                                 </label>
                             </div>
+                            <div class="flex items-center">
+                                <input id="otherSoftware" name="additionalServices" type="checkbox" value="Other" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
+                                <label for="otherSoftware" class="ml-2 block text-sm font-medium text-gray-300">
+                                    <span class="lang-en hidden">Other</span>
+                                    <span class="lang-te">ఇతర</span> <span class="rank-label"></span>
+                                </label>
+                            </div>
+                            <input type="text" id="otherSoftwareText" name="otherSoftwareText" data-lang-placeholder="otherSoftwareText" class="mt-1 block w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors hidden">
                         </div>
                     </div>
                     <div class="mt-4">
@@ -336,6 +344,21 @@
                                     <span class="lang-te">లైవ్ స్ట్రీమింగ్</span> <span class="rank-label"></span>
                                 </label>
                             </div>
+                            <div class="flex items-center">
+                                <input id="liveStreamingLedWalls" name="additionalServices" type="checkbox" value="Livestreaming (LED Walls)" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
+                                <label for="liveStreamingLedWalls" class="ml-2 block text-sm font-medium text-gray-300">
+                                    <span class="lang-en hidden">Livestreaming (LED Walls)</span>
+                                    <span class="lang-te">లైవ్ స్ట్రీమింగ్ (LED వాల్స్)</span> <span class="rank-label"></span>
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="otherHardware" name="additionalServices" type="checkbox" value="Other" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-600 rounded bg-gray-700">
+                                <label for="otherHardware" class="ml-2 block text-sm font-medium text-gray-300">
+                                    <span class="lang-en hidden">Other</span>
+                                    <span class="lang-te">ఇతర</span> <span class="rank-label"></span>
+                                </label>
+                            </div>
+                            <input type="text" id="otherHardwareText" name="otherHardwareText" data-lang-placeholder="otherHardwareText" class="mt-1 block w-full px-4 py-2 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors hidden">
                         </div>
                     </div>
                 </div>
@@ -421,12 +444,16 @@
                 en: {
                     lenses: "e.g., Canon 24-70mm f/2.8, Sigma 50mm f/1.4 Art",
                     otherPhotoText: "e.g., Corporate, Events, Birthday",
+                    otherSoftwareText: "e.g., Photo Editing, Logo Designing",
+                    otherHardwareText: "e.g., Special Cameras, Green Screen",
                     samplePhotos: "Paste your Google Drive link here",
                     startingPrice: "₹20,000"
                 },
                 te: {
                     lenses: "ఉదా., కెనాన్ 24-70మిమీ f/2.8, సిగ్మా 50మిమీ f/1.4 ఆర్ట్",
                     otherPhotoText: "ఉదా., కార్పొరేట్, ఈవెంట్స్, పుట్టినరోజు",
+                    otherSoftwareText: "ఉదా., ఫోటో ఎడిటింగ్, లోగో డిజైనింగ్",
+                    otherHardwareText: "ఉదా., ప్రత్యేక కెమెరాలు, గ్రీన్ స్క్రీన్",
                     samplePhotos: "Google Drive లింక్‌ను ఇక్కడ అతికించండి",
                     startingPrice: "₹20,000"
                 }
@@ -477,16 +504,25 @@
             const additionalServicesGroup = document.getElementById('additionalServices-group');
             const otherPhotoCheckbox = document.getElementById('other-photo');
             const otherPhotoText = document.getElementById('otherPhotoText');
-
-            otherPhotoCheckbox.addEventListener('change', () => {
-                if (otherPhotoCheckbox.checked) {
-                    otherPhotoText.classList.remove('hidden');
-                } else {
-                    otherPhotoText.classList.add('hidden');
-                    otherPhotoText.value = ''; // Clear value when hidden
-                }
-            });
+            const otherSoftwareCheckbox = document.getElementById('otherSoftware');
+            const otherSoftwareText = document.getElementById('otherSoftwareText');
+            const otherHardwareCheckbox = document.getElementById('otherHardware');
+            const otherHardwareText = document.getElementById('otherHardwareText');
             
+            // Function to handle showing/hiding 'Other' text fields
+            const handleOtherField = (checkbox, textField) => {
+                if (checkbox.checked) {
+                    textField.classList.remove('hidden');
+                } else {
+                    textField.classList.add('hidden');
+                    textField.value = ''; // Clear value when hidden
+                }
+            };
+
+            otherPhotoCheckbox.addEventListener('change', () => handleOtherField(otherPhotoCheckbox, otherPhotoText));
+            otherSoftwareCheckbox.addEventListener('change', () => handleOtherField(otherSoftwareCheckbox, otherSoftwareText));
+            otherHardwareCheckbox.addEventListener('change', () => handleOtherField(otherHardwareCheckbox, otherHardwareText));
+
             const handleCheckboxChange = (group, rankedInputId) => {
                 const checkboxes = group.querySelectorAll('input[type="checkbox"]');
                 const checkedCheckboxes = Array.from(checkboxes).filter(cb => cb.checked);
@@ -499,11 +535,15 @@
                     if (rankLabelSpan) {
                         rankLabelSpan.textContent = `(${index + 1})`;
                         
+                        let value = cb.value;
                         if (cb.id === 'other-photo' && otherPhotoText.value.trim() !== '') {
-                            rankedList.push(`${index + 1}. ${otherPhotoText.value.trim()}`);
-                        } else {
-                            rankedList.push(`${index + 1}. ${cb.value}`);
+                            value = otherPhotoText.value.trim();
+                        } else if (cb.id === 'otherSoftware' && otherSoftwareText.value.trim() !== '') {
+                            value = otherSoftwareText.value.trim();
+                        } else if (cb.id === 'otherHardware' && otherHardwareText.value.trim() !== '') {
+                            value = otherHardwareText.value.trim();
                         }
+                        rankedList.push(`${index + 1}. ${value}`);
                     }
                 });
                 
